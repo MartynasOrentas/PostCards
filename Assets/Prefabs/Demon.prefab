@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5354455333353765581}
   - component: {fileID: 3012274268122365984}
   - component: {fileID: 2788421620409347984}
+  - component: {fileID: 5007935428799641724}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6722248407103683956}
+  - {fileID: 667684369635293554}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,7 +147,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 971500e23237e0446a820b997908d60e, type: 2}
   - {fileID: 11400000, guid: d2f34531b694e24459fc17b58cdf7194, type: 2}
   - {fileID: 11400000, guid: c5022d93855fae249a556a2b852b8aca, type: 2}
-  enemyHealthText: {fileID: 971781370920078583}
+  enemyHealthText: {fileID: 0}
   encounterManager: {fileID: 0}
 --- !u!95 &2788421620409347984
 Animator:
@@ -168,6 +169,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5007935428799641724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560934867550960174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6813135cb5be2f47a1f439d3dd630f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 7
+  currentHealth: 0
+  slider: {fileID: 4650499494726879362}
+  low: {r: 1, g: 0, b: 0, a: 0}
+  high: {r: 0.456182, g: 1, b: 0, a: 0}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!1001 &8213086057895732528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,6 +282,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6154170523863917046, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973079498402441671, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8973079498402441671, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
       propertyPath: m_fontSize
       value: 1
@@ -293,19 +320,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
---- !u!114 &971781370920078583 stripped
+--- !u!224 &667684369635293554 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8700577505241177154, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
+  m_PrefabInstance: {fileID: 8213086057895732528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4650499494726879362 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8973079498402441671, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3563291680876719538, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
   m_PrefabInstance: {fileID: 8213086057895732528}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6722248407103683956 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3220222229175277636, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
-  m_PrefabInstance: {fileID: 8213086057895732528}
-  m_PrefabAsset: {fileID: 0}

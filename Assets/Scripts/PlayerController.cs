@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Details")]
     public float speed; // Player movement speed
-    public int playerHealth = 10;
+    //public int playerHealth = 10;
     public int manaAmmount = 30;
     [Header("Encounter")]
     public bool isEncounter = false; // Whether the player is currently in an encounter

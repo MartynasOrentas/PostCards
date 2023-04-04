@@ -56,13 +56,11 @@ public class EncounterManager : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         hoverTip = FindObjectOfType<HoverTip>();
         // Temporary Player Health Show up
-        playerHealth = playerController.playerHealth;
+        playerController.GetComponent<Health>().UpdateHealthBar(playerController.GetComponent<Health>().currentHealth, playerController.GetComponent<Health>().maxHealth);
         playerMana = playerController.manaAmmount;
-        playerHealthText.text = playerHealth.ToString();
     }
     private void Update()
     {
-        //Debug.Log("PlayerTurn: " + isPlayerTurn);
         if (turn == Turns.EnemyTurn)
         {
             Combat();
@@ -75,8 +73,8 @@ public class EncounterManager : MonoBehaviour
         // Find the new enemy
         enemyController = FindObjectOfType<EnemyController>();
         // Display Enemy Health
-        enemyCurrentHealth = enemyController.enemyMaxHealth;
-        enemyController.enemyHealthText.text = enemyCurrentHealth.ToString();
+        //enemyCurrentHealth = enemyController.enemyMaxHealth;
+        //enemyController.enemyHealthText.text = enemyCurrentHealth.ToString();
         //enemyHealthText.text = enemyCurrentHealth.ToString();
         // Handle the encounter
         isCombatOver = false;
@@ -158,7 +156,7 @@ public class EncounterManager : MonoBehaviour
             return;
         }
         // Check if combat is over
-        if (enemyCurrentHealth <= 0)
+        if (enemyController.GetComponent<Health>().currentHealth <= 0)
         {
             Debug.Log("Player wins!");
             EndCombat();
@@ -179,8 +177,7 @@ public class EncounterManager : MonoBehaviour
                     case CardType.Attack:
                         // Deal damage to enemy
                         int attackDamage = card.attack;
-                        enemyCurrentHealth -= attackDamage;
-                        enemyController.enemyHealthText.text = enemyCurrentHealth.ToString();
+                        enemyController.GetComponent<Health>().TakeDamage(attackDamage);
                         playerMana -= card.manaCost;
                         playerManaText.text = playerMana.ToString();
                         Debug.Log("Player deals " + attackDamage + " damage to enemy.");
@@ -188,8 +185,7 @@ public class EncounterManager : MonoBehaviour
                     case CardType.Defense:
                         // Increase player's health
                         int defenseBonus = card.defense;
-                        playerHealth += defenseBonus;
-                        playerHealthText.text = playerHealth.ToString();
+                        playerController.GetComponent<Health>().Heal(defenseBonus);
                         playerMana -= card.manaCost;
                         playerManaText.text = playerMana.ToString();
                     Debug.Log("Player increases their health by " + defenseBonus + ".");
@@ -197,11 +193,9 @@ public class EncounterManager : MonoBehaviour
                     case CardType.Spell:
                         // Deal damage to enemy and increase player's health
                         int spellDamage = card.attack;
-                        enemyCurrentHealth -= spellDamage;
-                        enemyController.enemyHealthText.text = enemyCurrentHealth.ToString();
+                        enemyController.GetComponent<Health>().TakeDamage(spellDamage);
                         int spellHeal = Mathf.FloorToInt(spellDamage * 0.5f); // Heal for half the damage dealt
-                        playerHealth += spellHeal;
-                        playerHealthText.text = playerHealth.ToString();
+                        playerController.GetComponent<Health>().Heal(spellHeal);
                         playerMana -= card.manaCost;
                         playerManaText.text = playerMana.ToString();
                         Debug.Log("Player deals " + spellDamage + " damage to enemy and heals for " + spellHeal + ".");
@@ -216,6 +210,7 @@ public class EncounterManager : MonoBehaviour
 
     private void EnemyPlayCard()
     {
+            StartCoroutine(WaitBeforeAttack());
             Card enemySelectedCard = new Card();
             enemySelectedCard = enemyController.PlayRandomCard();
             switch (enemySelectedCard.cardType)
@@ -223,30 +218,31 @@ public class EncounterManager : MonoBehaviour
                 case CardType.Attack:
                     // Deal damage to enemy
                     int attackDamage = enemySelectedCard.attack;
-                    playerHealth -= attackDamage;
-                    playerHealthText.text = playerHealth.ToString();
+                    playerController.GetComponent<Health>().TakeDamage(attackDamage);
                     Debug.Log("Enemy deals " + attackDamage + " damage to player.");
                     break;
                 case CardType.Defense:
                     // Increase player's health
                     int defenseBonus = enemySelectedCard.defense;
-                    enemyCurrentHealth += defenseBonus;
-                    enemyController.enemyHealthText.text = enemyCurrentHealth.ToString();
+                    enemyController.GetComponent<Health>().Heal(defenseBonus);
                     Debug.Log("Enemy increases their health by " + defenseBonus + ".");
                     break;
                 case CardType.Spell:
                     // Deal damage to enemy and increase player's health
                     int spellDamage = enemySelectedCard.attack;
-                    playerHealth -= spellDamage;
-                    playerHealthText.text = playerHealth.ToString();
+                    playerController.GetComponent<Health>().TakeDamage(spellDamage);
                     int spellHeal = Mathf.FloorToInt(spellDamage * 0.5f); // Heal for half the damage dealt
-                    enemyCurrentHealth += spellHeal;
-                    enemyController.enemyHealthText.text = enemyCurrentHealth.ToString();
+                    enemyController.GetComponent<Health>().Heal(spellHeal);
                     Debug.Log("Enemy deals " + spellDamage + " damage to player and heals for " + spellHeal + ".");
                     break;
             }
         turn = Turns.PlayerTurn;
 
+    }
+
+    private IEnumerator WaitBeforeAttack()
+    {
+        yield return new WaitForSeconds(1f);
     }
 
     public void PassTurn()
