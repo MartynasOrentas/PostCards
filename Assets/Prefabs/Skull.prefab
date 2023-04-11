@@ -109,14 +109,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a8f4e4a527113b4db8483a381ac6e78, type: 2}
   enemyDefenseCard:
   - {fileID: 11400000, guid: 97c154614d96ea14d93f90d4e13d2a96, type: 2}
-  - {fileID: 11400000, guid: d9f006c84c36a244896375547cde3c31, type: 2}
-  - {fileID: 11400000, guid: 19ffe338a9312754ab53b777dbf5e382, type: 2}
   enemySpellCard:
   - {fileID: 11400000, guid: 7f9ba700a33d3b34094a0de94ee046d6, type: 2}
   - {fileID: 11400000, guid: 46cfe22851d7c2d449397bbbbc7b7a66, type: 2}
   - {fileID: 11400000, guid: 971500e23237e0446a820b997908d60e, type: 2}
   enemyHealthText: {fileID: 0}
-  encounterManager: {fileID: 0}
+  healthScript: {fileID: 0}
 --- !u!95 &-1496951569817888391
 Animator:
   serializedVersion: 4
@@ -178,9 +176,11 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   slider: {fileID: 1865277385237718413}
-  low: {r: 1, g: 0, b: 0, a: 0}
-  high: {r: 0.456182, g: 1, b: 0, a: 0}
-  Offset: {x: 0, y: 0, z: 0}
+  damageText: {fileID: 4535522572094537164, guid: b5f50730fa8f1944f94f10871fed8cc4, type: 3}
+  low: {r: 1, g: 0, b: 0, a: 1}
+  high: {r: 0.456182, g: 1, b: 0, a: 1}
+  Offset: {x: 0, y: 1, z: 0}
+  indicator: {fileID: 3093610437720547353, guid: b5f50730fa8f1944f94f10871fed8cc4, type: 3}
 --- !u!1001 &2923277069429966911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,6 +274,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3220222229175277636, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995324882736781744, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6154170523863917046, guid: f3cf3e81174d2af48b24466d669f80b6, type: 3}

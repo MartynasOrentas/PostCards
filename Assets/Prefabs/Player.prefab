@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  playerHealth: 20
   manaAmmount: 100
   isEncounter: 0
   encounterDistance: 5
@@ -142,7 +141,7 @@ MonoBehaviour:
   slider: {fileID: 7833632342692520220}
   low: {r: 1, g: 0, b: 0, a: 0}
   high: {r: 0.456182, g: 1, b: 0, a: 0}
-  Offset: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 1, z: 0}
 --- !u!1001 &6757086074359516334
 PrefabInstance:
   m_ObjectHideFlags: 0

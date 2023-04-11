@@ -12,26 +12,26 @@ public class EnemyController : MonoBehaviour
     public Card[] enemySpellCard;
     public TextMeshProUGUI enemyHealthText; // Enemy Health 
 
-    public EncounterManager encounterManager;
+    public Health healthScript;
     // Start is called before the first frame update
     void Start()
     {
-        encounterManager = FindObjectOfType<EncounterManager>();
+        healthScript = GetComponent<Health>();
     }
     public Card PlayRandomCard()
     {
-        if ((encounterManager.enemyCurrentHealth / enemyMaxHealth) * 100 > 50)
+        if ((healthScript.currentHealth / healthScript.maxHealth) * 100 > 50)
         {
             return enemyAttackCard[Random.Range(0, enemyAttackCard.Length)];
         }
-        if ((encounterManager.enemyCurrentHealth / enemyMaxHealth) * 100 <= 20)
-        {
-            return enemyDefenseCard[Random.Range(0, enemyDefenseCard.Length)];
-        }
-        if ((encounterManager.enemyCurrentHealth / enemyMaxHealth) * 100 <=  50)
+        if ((healthScript.currentHealth / healthScript.maxHealth) * 100 <= 50)
         {
 
             return enemySpellCard[Random.Range(0, enemySpellCard.Length)];
+        }
+        if ((healthScript.currentHealth / healthScript.maxHealth) * 100 <= 20)
+        {
+            return enemyDefenseCard[Random.Range(0, enemyDefenseCard.Length)];
         }
         return enemyAttackCard[Random.Range(0, enemyAttackCard.Length)];
     }
